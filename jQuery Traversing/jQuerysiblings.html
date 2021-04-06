@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#h1h2").siblings().css({"color": "red", "border": "2px solid red"});
+                $("#h2h2").siblings("p").css({"color": "red", "border": "2px solid red"});
+                $("#h3h2").next().css({"color": "red", "border": "2px solid red"});
+                $("#h4h2").nextAll().css({"color": "red", "border": "2px solid red"});
+                $("#h5h2").nextUntil("h6").css({"color": "red", "border": "2px solid red"});
+                $("#h6h2").prev().css({"color": "red", "border": "2px solid red"});
+                $("#h7h2").prevAll().css({"color": "red", "border": "2px solid red"});
+                $("#h8h2").prevUntil("h6").css({"color": "red", "border": "2px solid red"});
+            });
+        </script>
+        <style>
+            .siblings * { 
+              display: block;
+              border: 2px solid lightgrey;
+              color: lightgrey;
+              padding: 5px;
+              margin: 15px;
+            }
+            </style>
+    </head>
+    <body>
+        <div class="siblings">
+            <div>div(parent)
+                <p>p</p>
+                <span>span</span>
+                <h2 id="h1h2">h2</h2>
+                <h3>h3</h3>
+                <p>p</p>
+            </div>
+            <div>div(parent)
+                <p id="p1">p</p>
+                <span>span</span>
+                <h2 id="h2h2">h2</h2>
+                <h3>h3</h3>
+                <p>p</p>
+            </div>
+            <div>div(parent)
+                <p id="p1">p</p>
+                <span>span</span>
+                <h2 id="h3h2">h2</h2>
+                <h3>h3</h3>
+                <p>p</p>
+            </div>
+            <div>div(parent)
+                <p id="p1">p</p>
+                <span>span</span>
+                <h2 id="h4h2">h2</h2>
+                <h3>h3</h3>
+                <p>p</p>
+            </div>
+            <div>div (parent)
+                <p>p</p>
+                <span>span</span>
+                <h2 id="h5h2">h2</h2>
+                <h3>h3</h3>
+                <h4>h4</h4>
+                <h5>h5</h5>
+                <h6>h6</h6>
+                <p>p</p>
+              </div>
+              <div>div(parent)
+                <p id="p1">p</p>
+                <span>span</span>
+                <h2 id="h6h2">h2</h2>
+                <h3>h3</h3>
+                <p>p</p>
+            </div>
+            <div>div(parent)
+                <p id="p1">p</p>
+                <span>span</span>
+                <h2 id="h7h2">h2</h2>
+                <h3>h3</h3>
+                <p>p</p>
+            </div>
+            <div>div (parent)
+                <p>p</p>
+                <span>span</span>
+                <h6>h6</h6>
+                <h4>h4</h4>
+                <h5>h5</h5>
+                <h3>h3</h3>
+                <h2 id="h8h2">h2</h2>
+                <p>p</p>
+              </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#btn").click(function(){
+                    var txt = "";
+                    txt += "Document width/height: " + $(document).width();
+                    txt += "x" + $(document).height() + "\n";
+                    txt += "Window width/height: " + $(window).width();
+                    txt += "x" + $(window).height();
+                    alert(txt);
+                });
+                $("#btn1").click(function(){
+                    var txt1="";
+                    txt1 += "Width of div1: " + $("#div1").width() + "</br>";
+                    txt1 += "Height of div1: " + $("#div1").height();
+                    $("#div1").html(txt1);
+                });
+                $("#btn2").click(function(){
+                    var txt2="";
+                    txt2 += "Width of div2: " + $("#div2").innerWidth() + "</br>";
+                    txt2 += "Height of div2: " + $("#div2").innerHeight();
+                    $("#div2").html(txt2);
+                });
+                $("#btn3").click(function(){
+                    var txt3="";
+                    txt3 += "Width of div3: " + $("#div3").outerWidth() + "</br>";
+                    txt3 += "Height of div3: " + $("#div3").outerHeight();
+                    $("#div3").html(txt3);
+                });
+            });
+        </script>
+        <style>
+            #div1,#div2,#div3 {
+              height: 100px;
+              width: 300px;
+              padding: 10px;
+              margin: 3px;
+              border: 1px solid blue;
+              background-color: lightblue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="div1"></div>
+        <div id="div2"></div>
+        <div id="div3"></div>
+        <br>
+
+        <button id="btn">Display dimensions of document and window</button><br>
+        <button id="btn1">Display dimensions of div1</button>
+        <button id="btn2">Display dimensions of div2</button>
+        <button id="btn3">Display dimensions of div3</button>
+
+        <p>width() - returns the width of an element.</p>
+        <p>height() - returns the height of an element.</p>
+    </body>
+</html>

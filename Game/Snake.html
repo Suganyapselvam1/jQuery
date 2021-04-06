@@ -1,0 +1,50 @@
+<!-- The jQuery animate() method is used to create custom animations. -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            for(i=1;i<2500;i++)
+            {
+                if(i>=1251 && i<=1255){
+                    $('#snake').append("<div class='red'></div>"); 
+                }else{
+                    $('#snake').append("<div class='box'></div>"); 
+                }
+            }
+            
+        });
+    </script>
+    <style>
+        #snake{
+            background:#98bf21;
+            height:500px;
+            width:500px;
+        }
+        .box{
+            height:10px;
+            width:10px;
+            float:left;
+        }
+        .red{
+            background:#d4280a;
+            height:10px;
+            width:10px;
+            float:left;   
+        }
+    </style>
+</head>
+
+<body>
+
+    <button>Snake Animation</button>
+
+    <p>snake game</p>
+
+    <div id="snake"></div>
+    
+</body>
+
+</html>

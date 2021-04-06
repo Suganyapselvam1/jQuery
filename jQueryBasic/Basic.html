@@ -1,0 +1,45 @@
+<!-- jQuery Basic:
+    jQuery is a JavaScript Library.
+
+    jQuery greatly simplifies JavaScript programming.
+
+    jQuery is easy to learn. -->
+    <!-- ========================================================================================= -->
+
+<!-- Basic syntax is: $(selector).action()
+
+    A $ sign to define/access jQuery
+    A (selector) to "query (or find)" HTML elements
+    A jQuery action() to be performed on the element(s)
+Examples:
+
+$(this).hide() - hides the current element.
+
+$("p").hide() - hides all <p> elements.
+
+$(".test").hide() - hides all elements with class="test".
+
+$("#test").hide() - hides the element with id="test". -->
+
+<!-- =========================================================================================== -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("button").dblclick(function(){
+          $("a[target!='_blank']").hide();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <button>click me</button>
+    <h3>This is heading</h3>
+    <p class="intro">This is a paragraph.</p>
+    <p>If You click me,I will disappear</p>
+    <p><a href="https://www.w3schools.com/html/">HTML Tutorial</a></p>
+    <p><a href="https://www.w3schools.com/html/" target="_blank">HTML Tutorial1</a></p>
+  </body>
+</html>

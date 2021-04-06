@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            function afterText(){
+                var txt1="<b>I</b>";
+                var txt2=$("<b></b>").text("Love");
+                var txt3=document.createElement("b");
+                txt3.innerHTML="You";
+                $("img").after(txt1,txt2,txt3);
+            }
+            $(document).ready(function(){
+                $("#btn1").click(function(){
+                    $("#test1").append("Append text");
+                });
+                $("#btn2").click(function(){
+                    $("ol").append("<li>Append item</li>");
+                });
+                $("#btn3").click(function(){
+                    $("#test2").prepend("<b>Prepended text</b>")
+                });
+                $("#btn4").click(function(){
+                    $("img").before("before");
+                });
+                $("#btn5").click(function(){
+                    $("img").after("after");
+                });
+            });
+        </script>
+        <script>
+             function appendText(){
+                var txt1="<p>Text</p>";
+                var txt2=$("<p></p>").text("Text");
+                var txt3=document.createElement("p");
+                txt3.innerHTML="Text";
+                $("body").append(txt1,txt2,txt3);
+            }
+        </script>
+    </head>
+    <body>
+        <ol>
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+        </ol>
+        <img src="https://www.w3schools.com/images/w3jquery.gif" alt="jQuery" width="100" height="140">
+        <p id="test1">this is paragraph</p>
+        <p id="test2">this is another paragraph</p>
+
+        <button id="btn1">AAppend Text</button>
+        <button id="btn2">Append list items</button>
+
+        <button id="btn3">Prepended text</button>
+        <button onclick="appendText()">Appened Text</button>
+
+        <button id="btn4">Insert Before</button>
+        <button id="btn5">Insert After</button>
+
+        <button onclick="afterText()">After</button>
+    </body>
