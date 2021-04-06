@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                var urlParams = new URLSearchParams(window.location.search);
+                if(urlParams.get("Type")=="D"){
+                    $("h1").text("Income Report for date");
+                }
+                else if(urlParams.get("Type")=="M"){
+                    $("h1").text("Income Report for month");
+                }
+                else if(urlParams.get("Type")=="Y"){
+                    $("h1").text("Income Report for year");
+                }
+                else{
+                    $("h1").text("Income Report for all");
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <h1></h1>
+    </body>
+</html>
