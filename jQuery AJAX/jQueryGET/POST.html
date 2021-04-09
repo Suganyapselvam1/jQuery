@@ -1,0 +1,39 @@
+<!-- jQuery - AJAX get() and post() Methods
+
+    GET - Requests data from a specified resource
+    POST - Submits data to be processed to a specified resource
+
+    GET is basically used for just getting (retrieving) some data from the server. Note: The GET method may return cached data.
+
+    POST can also be used to get some data from the server. However, the POST method NEVER caches data, and is often used to send data along with the request. -->
+
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    $("#btn1").click(function(){
+                        $.get("https://localhost:44341/api/values",function(data, status){
+                        alert("Data: " + data + "\nStatus: " + status);
+                        });
+                    });
+                    $("#btn2").click(function () {
+                        $.post("https://localhost:44341/api/values",
+                            {
+                                value1: "Donald Duck",
+                                value2: "Duckburg"
+                            },
+                            function (data, status) {
+                                alert("Data: " + data + "\nStatus: " + status);
+                        });
+                    });
+                });
+            </script>
+        </head>
+        <body>
+            <body>
+                <button id="btn1">Send an HTTP GET request to a page and get the result back</button><br><br>
+                <button id="btn2">Send an HTTP POST request to a page and POST the result back</button>
+        </body>
+    </html>
