@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+            #board{
+                float:left;
+                background-color: cadetblue;
+            }
+            .points{
+                float:left;
+                top: 200px;
+                left: 600px;
+                position: absolute;
+            }
+            .box{
+                float:left;
+                width:10px;
+                height: 10px;
+            /* background-color: rgb(250, 20, 20); */
+            }
+            .car{
+                background-color: rgb(235, 121, 14);
+            }
+            .cars{
+                background-color: rgb(247, 243, 11);
+            }
+            .lifeCar{
+                background-color: rgb(3, 204, 46);
+            }
+            .game-over{
+                top: 200px;
+                left: 150px;
+                position: absolute;
+            }
+        </style>
+        <script>
+            
+            var cars=[5];
+            var lifeCar=[175];
+            var point=50;
+            var width = 50;
+            var length = 60;
+            var boxSize = length * width;
+            var lifeCarFrequency = 5;
+            var lifeCarFrequencyOri = lifeCarFrequency;
+            var car=boxSize;
+            $(document).ready(function(){
+                $("#board").css("width", width*10+"px");
+                $("#board").css("height", length*10+"px");
+                $(".game-over").hide();
+                document.onkeydown = function (e) {
+                switch (e.which) {
+                    case 37: // left
+                        if(car>boxSize-width+1){
+                            $(".box."+car).removeClass("car");
+                            car-=1;
+                            $(".box."+car).addClass("car"); 
+                        }
+                        break;
+                    case 39: // right
+                        if(car<boxSize){
+                            $(".box."+car).removeClass("car");
+                            car+=1;
+                            $(".box."+car).addClass("car"); 
+                        }
+                        break;
+                    default: return; // exit this handler for other keys
+                }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+};
+            for(i=1;i<=boxSize;i++){
+                    $('<div class="box '+i+'"></div>').appendTo('#board');
+            }
+            for(i=0;i<cars.length;i++){
+                $(".box."+cars[i]).addClass("cars");
+            }
+            $(".box."+car).addClass("car");
+            var clearinterval=setInterval(function (){
+                lifeCarFrequencyOri--;
+                for(i=0;i<cars.length;i++){
+                    $(".box."+cars[i]).removeClass("cars");
+                    cars[i]+=width;
+                    $(".box."+cars[i]).addClass("cars");
+                }
+                for(i=0;i<lifeCar.length;i++){
+                    $(".box."+lifeCar[i]).removeClass("lifeCar");
+                    lifeCar[i]+=width;
+                    $(".box."+lifeCar[i]).addClass("lifeCar");
+                }
+                var newcar=Math.floor((Math.random() * width) + 1);
+                if(lifeCarFrequencyOri<0){
+                    lifeCarFrequencyOri = lifeCarFrequency;
+                    var newcar=Math.floor((Math.random() * width) + 1);
+                    lifeCar.unshift(newcar);
+                }
+
+                cars.unshift(newcar);
+                if(cars[cars.length-1]>boxSize){
+                    cars.pop();
+                }
+                if(lifeCar[lifeCar.length-1]>boxSize){
+                    var removed = lifeCar.pop();
+                }
+                var hitcar=cars[cars.length-1];
+                if(hitcar==car){
+                    point-=10;
+                    $(".points .point").text(point);
+                }
+                if(point==0){
+                    $(".game-over").show();
+                    clearInterval(clearinterval);   
+                }
+
+                var hitcar=lifeCar[lifeCar.length-1];
+                if(hitcar==car){
+                    point+=10;
+                    $(".points .point").text(point);
+                }
+            },100);
+            
+        });
+        </script>
+    </head>
+    <body>
+        <h1 class="game-over">game over</h1>
+        <div id="board" ></div>
+        <div class="points">
+            points: <span class="point">50</span>
+            <br>
+            <br>
+            Life Car
+            <div class="box lifeCar" style="float:none;"></div>
+            <br>
+            Enemy Car
+            <div class="box cars" style="float:none;"></div>
+        </div>
+    </body>
+</html>
