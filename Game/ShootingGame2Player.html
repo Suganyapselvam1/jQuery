@@ -1,0 +1,128 @@
+<!DOCTYPE html>	
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+            #board{
+            width:500px;
+            height: 500px;
+            background-color: cadetblue;
+        }
+        .box{
+            float:left;
+            width:10px;
+            height: 10px;
+        }
+        .point1{
+            background-color: rgb(247, 166, 16);
+        }
+        .point2{
+            background-color: rgb(247, 243, 16);
+        }
+        .game-over{
+                top: 200px;
+                left: 150px;
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+       
+        <script>
+             var gun1=[];
+             var gun2=[];
+            $(document).ready(function(){
+                $(".game-over").hide();
+                for(i=1;i<=2500;i++){
+                    $('<div class="box '+i+'"></div>').appendTo("#board");
+                }
+                var member1=1201;
+                var member2=1250;
+                $(".box."+member1).addClass("point1");
+                $(".box."+member2).addClass("point2");
+                
+                var Interval=setInterval(function () {
+                    if(gun1[0]%50==0){
+                        if(gun1[0]==member2){
+                            $(".game-over").show();
+                            clearInterval(Interval);
+                        }
+                        $(".box."+gun1[0]).removeClass("point1");
+                        gun1.shift();
+                    }
+                    // debugger;
+                    for(i=0;i<gun1.length;i++){
+                        $(".box."+gun1[i]).removeClass("point1");
+                        gun1[i]+=1;
+                        $(".box."+gun1[i]).addClass("point1");
+                    }
+                    if(gun2[0]%50==1){
+                        if(gun2[0]==member1){
+                            $(".game-over").show();
+                            clearInterval(Interval);
+                        }
+                        $(".box."+gun2[0]).removeClass("point2");
+                        gun2.shift();
+                    }
+                    // debugger;
+                    for(i=0;i<gun2.length;i++){
+                        $(".box."+gun2[i]).removeClass("point2");
+                        gun2[i]-=1;
+                        $(".box."+gun2[i]).addClass("point2");
+                    }
+                }, 100);    
+
+                document.onkeydown = function (e) {
+                switch (e.which) {
+                    case 83: // up1
+                        if(member1<2450){
+                            $(".box."+member1).removeClass("point1");
+                            member1+=50;
+                            $(".box."+member1).addClass("point1");
+                        }
+                        break;
+                    case 40: // up
+                        if(member2<2500){
+                            $(".box."+member2).removeClass("point2");
+                            member2+=50;
+                            $(".box."+member2).addClass("point2");
+                        }
+                        break;
+
+                    case 87: // down1
+                        if(member1>1){
+                            $(".box."+member1).removeClass("point1");
+                            member1-=50;
+                            $(".box."+member1).addClass("point1");
+                        }
+                        break;
+                    case 38: // down 
+                        if(member2>50){
+                            $(".box."+member2).removeClass("point2");
+                            member2-=50; 
+                            $(".box."+member2).addClass("point2");
+                        }
+                        break;
+                    case 68: // down 
+                        var newBullet=member1+1;
+                        if(gun1.indexOf(newBullet)<0){
+                            gun1.push(newBullet);
+                            $(".box."+newBullet).addClass("point1");
+                        }
+                        break;
+                    case 37: // down 
+                        var newBullet=member2-1;
+                        if(gun2.indexOf(newBullet)<0){
+                            gun2.push(newBullet);
+                            $(".box."+newBullet).addClass("point2");
+                        }
+                        break;
+                    default: return; // exit this handler for other keys
+                }
+            }
+            });
+        </script>
+        <h1 class="game-over">game over</h1>
+        <div id="board"></div>
+    </body>
+</html>
